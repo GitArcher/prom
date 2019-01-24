@@ -7,30 +7,30 @@ html, body {
 }
 
 body {
-  background: linear-gradient(to bottom, black, #002040);
+  background: url(./res/wall.jpg) center/cover fixed no-repeat;
   font-family: Montserrat, sans-serif;
+  overflow-x: hidden;
 }
 
 header {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0 0 1em;
+  position: fixed;
   display: flex;
-  padding: 1em 0;
   justify-content: space-around;
   align-items: center;
+  z-index: 1;
 }
 
 header > div {
   width: 10em;
-  padding: 0.5em 0;
+  padding: 1.5em 0 .5em;
   text-align: center;
-  border: solid 3px white;
-//  border-radius: 1.5em;
+  border-radius: 0 0 .4em .4em;
   transition:
     background-color 0.4s linear,
     color 0.4s linear;
   cursor: pointer;
-  font-weight: bold;
 }
 
 header > div:hover {
@@ -38,20 +38,34 @@ header > div:hover {
   background-color: white;
 }
 
+header > div.active {
+  color: black;
+  background-color: white;
+  box-shadow: 0 0 4px .2px;
+}
+
 #scope {
-  height: calc(100vh - 5em);
+  min-height: calc(100vh - 5em);
   overflow-y: hidden;
 }
 
 main {
-  height: 100%;
-  transition: transform 0.4s ease-in;
+  display: flex;
+  width: 300%;
+  padding-top: 5em;
+  transition: transform .4s ease-in;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 main section {
 //  display: flex;
-  width: 100%;
-  min-height: 100%;
+  width: calc(100% / 3);
+  min-height: calc(100vh - 5em);
 //  justify-content: center;
   text-align: center;
+  position: relative;
+}
+
+main section.view {
+  display: block;
 }
