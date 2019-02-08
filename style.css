@@ -7,65 +7,68 @@ html, body {
 }
 
 body {
-  background: url(./res/wall.jpg) center/cover fixed no-repeat;
+  background: url(./res/wall2.jpg) center/cover fixed no-repeat;
   font-family: Montserrat, sans-serif;
   overflow-x: hidden;
 }
 
-header {
+nav {
   width: 100%;
   padding: 0 0 1em;
   position: fixed;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   z-index: 1;
 }
 
-header > div {
+nav > div {
   width: 10em;
   padding: 1.5em 0 .5em;
+  margin: 0 0.5em;
   text-align: center;
+  background-color: white;
   border-radius: 0 0 .4em .4em;
+  color: black;
   transition:
-    background-color 0.4s linear,
-    color 0.4s linear;
+    transform .2s linear;
+  transform: translateY(-1em);
   cursor: pointer;
 }
 
-header > div:hover {
-  color: black;
-  background-color: white;
+nav > div:hover {
+  transform: translateY(0);
 }
 
-header > div.active {
-  color: black;
+nav > div.active {
   background-color: white;
-  box-shadow: 0 0 4px .2px;
-}
-
-#scope {
-  min-height: calc(100vh - 5em);
-  overflow-y: hidden;
+  box-shadow: 0 0 4px .2px black;
+  transform: translateY(0);
+  cursor: default;
 }
 
 main {
   display: flex;
   width: 300%;
-  padding-top: 5em;
-  transition: transform .4s ease-in;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
+  transition: transform .4s ease-in;
 }
 
 main section {
-//  display: flex;
+  display: flex;
+  flex-direction: column;
   width: calc(100% / 3);
-  min-height: calc(100vh - 5em);
-//  justify-content: center;
-  text-align: center;
-  position: relative;
+  height: 100%;
+  padding-top: 5em;
+  box-sizing: border-box;
+  overflow-y: hidden;
 }
 
 main section.view {
-  display: block;
+  overflow-y: auto;
+}
+
+main section > header {
+  text-align: center;
 }

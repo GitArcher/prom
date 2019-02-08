@@ -1,29 +1,34 @@
-//const [btnHome, btnExample, btnAbout] = document.querySelectorAll('header > div')
-const tabs = Array.from( document.querySelectorAll('header > div') )
-//const [home, examples, about] = document.querySelectorAll('main section')
+const tabs = Array.from( document.querySelectorAll('nav > div') )
 const sections = Array.from( document.querySelectorAll('main section') )
 
 const main = document.querySelector('main')
 
-// btnHome.addEventListener( 'click', moveMain(3) )
-// btnExample.addEventListener( 'click', moveMain(2) )
-// btnAbout.addEventListener( 'click', moveMain(1) )
-//
 
-tabs.forEach( (tab, num) => {
-  tab.addEventListener( 'click', toggleActiveTab )
-  tab.addEventListener( 'click', moveMain(num) )
+const preload = [initTabs]
+preload.forEach( func => func() )
+
+window.addEventListener('load', () => {
+
 })
 
+
+function initTabs() {
+  tabs.forEach( (tab, tabNum) => tab.addEventListener( 'click', getTabHandler(tab, tabNum) ) )
+}
+
+function getTabHandler(tab, tabNum) {
+  return () => {
+    toggleClassOn(tab, 'active')
+    toggleClassOn(sections[tabNum], 'view')
+    moveMain(tabNum)
+  }
+}
+
 function moveMain(step) {
-  return event => main.style.transform = `translateX(${ -(step/3)*100 }%)`
+  main.style.transform = `translateX(${ -(step/3)*100 }%)`
 }
 
-function toggleActiveTab() {
-  document.querySelector('.active').classList.remove('active')
-  this.classList.add('active')
-}
-
-function viewSection() {
-  sections
+function toggleClassOn(element, selector) {
+  document.querySelector(`.${selector}`).classList.remove(selector)
+  element.classList.add(selector)
 }
